@@ -28,7 +28,9 @@ function addProduct(id, name, img, price) {
     const cart = window.localStorage.getItem('cart') ? JSON.parse(window.localStorage.getItem('cart')): [];
     const existItem = cart.find(product => product.id === id);
     if (existItem) {
+        existItem.price = parseInt(existItem.price);
         existItem.quan += 1;
+        existItem.price += parseInt(price);
     } else {
         cart.push({
             id,
