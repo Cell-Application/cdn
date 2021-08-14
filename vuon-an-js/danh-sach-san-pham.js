@@ -4,9 +4,9 @@ function addEvent() {
         console.log(document.getElementsByClassName('button-card').item(i), i);
         if (!item) {
         } else {
-            const id = item.getElementsByTagName('span').item(0).innerText;
-            const name = item.getElementsByTagName('h6').item(0).innerText;
-            const price = parseInt(item.getElementsByTagName('div').item(0).innerText);
+            const id = item.getElementsByTagName('span').item(0).innerText.replace(/\n/, '');
+            const name = item.getElementsByTagName('h6').item(0).innerText.replace(/\n/, '');
+            const price = parseInt(item.getElementsByTagName('div').item(0).innerText).replace(/\n/, '');
             document.getElementsByClassName('button-card').item(i).addEventListener('click', () => addProduct(id, name, null ,price));
         }
     }
