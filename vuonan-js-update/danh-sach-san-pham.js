@@ -37,6 +37,7 @@ function addProduct(id, name, img, price) {
             name,
             img,
             price,
+            basedPrice: price,
             quan: 1
         })
     }
