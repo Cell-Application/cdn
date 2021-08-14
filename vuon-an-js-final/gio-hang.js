@@ -14,6 +14,13 @@ function getDataFromStorage() {
 
 getDataFromStorage();
 
+function uuidv4() {
+    return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function(c) {
+        var r = Math.random() * 16 | 0, v = c == 'x' ? r : (r & 0x3 | 0x8);
+        return v.toString(16);
+    });
+}
+
 function changeQuan(id_product, event) {
     console.log('onchange worked');
     const cart = window.localStorage.getItem('cart') ? JSON.parse(window.localStorage.getItem('cart')): [];
@@ -29,9 +36,10 @@ function changeQuan(id_product, event) {
 
 const submitForm = async () => {
     const getDate = new Date();
+    const id = uuidv4();
     const submitValue = {
         ORDER_DATE: getDate,
-        ID: 'e0d24107-c251-42f1-a3b8-4173a704766f',
+        ID: id,
         SUBTOTAL: cost
     }
     await fetch('https://api.vuonan.erp365.vn/api/Dynamic/create/e0d24107-c251-42f1-a3b8-4173a704766f', {
@@ -47,7 +55,7 @@ const submitForm = async () => {
             SUBTOTAL: item.price,
             QUANTITY: item.quan,
             PRODUCT: item.id,
-            ORDER: 'e0d24107-c251-42f1-a3b8-4173a704766f'
+            ORDER: id
         }
         await fetch('https://api.vuonan.erp365.vn/api/Dynamic/create/7a9331b7-eb21-4971-a8c2-29053f7b05e5', {
             method: 'POST',
