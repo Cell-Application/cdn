@@ -2,9 +2,10 @@ let cost = 0;
 function getDataFromStorage() {
     const cart = window.localStorage.getItem('cart') ? JSON.parse(window.localStorage.getItem('cart')): [];
     let count = 0;
+    cost = 0
     for (const item of cart) {
         count = count + item.quan;
-        cost = parseInt(item.price)
+        cost += parseInt(item.price)
     }
     document.getElementById('num_cart').innerText = count;
     document.getElementById('sumValue').innerText = cost;
